@@ -1,0 +1,42 @@
+From 421504117590df87f596712cbdd350b3baa0af02 Mon Sep 17 00:00:00 2001
+From: Sabri Ünal <yakushabb@gmail.com>
+Date: Sat, 3 Jan 2026 04:55:55 +0300
+Subject: [PATCH] Fix appdata papercuts
+
+---
+ uk.co.electronstudio.ComicReaderUltimate.appdata.xml | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/uk.co.electronstudio.ComicReaderUltimate.appdata.xml b/uk.co.electronstudio.ComicReaderUltimate.appdata.xml
+index fdf0305..3c15b41 100644
+--- a/uk.co.electronstudio.ComicReaderUltimate.appdata.xml
++++ b/uk.co.electronstudio.ComicReaderUltimate.appdata.xml
+@@ -4,6 +4,9 @@
+     <name>ComicReaderUltimate</name>
+     <launchable type="desktop-id">uk.co.electronstudio.ComicReaderUltimate.desktop</launchable>
+     <summary>An opinionated CBZ viewer</summary>
++    <developer id="uk.co.electronstudio">
++        <name>Richard Smith</name>
++    </developer>
+     <description>
+         <p>ComicReaderUltimate (CRU) is the modern successor to ComicReaderPro, one of the earliest programs for reading comics in CBR, CBZ or JPEG format on Windows, Mac and Linux.
+         </p>
+@@ -25,6 +28,8 @@
+     <metadata_license>CC0-1.0</metadata_license>
+     <project_license>CC-BY-NC-ND-4.0</project_license>
+     <url type="homepage">https://github.com/electronstudio/ComicReaderUltimate/</url>
++    <url type="bugtracker">https://github.com/electronstudio/ComicReaderUltimate/issues/</url>
++    <url type="vcs-browser">https://github.com/electronstudio/ComicReaderUltimate/</url>
+     <screenshots>
+         <screenshot type="default">
+             <caption>The user interface</caption>
+@@ -35,4 +40,4 @@
+     <releases>
+         <release version="1.0.4" date="2022-03-03"/>
+     </releases>
+-</component>
+\ No newline at end of file
++</component>
+--
+libgit2 1.7.2
+
