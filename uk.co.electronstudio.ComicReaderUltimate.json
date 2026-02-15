@@ -1,13 +1,23 @@
 {
   "id" : "uk.co.electronstudio.ComicReaderUltimate",
   "runtime" : "org.freedesktop.Platform",
-  "runtime-version" : "21.08",
+  "runtime-version" : "25.08",
   "sdk" : "org.freedesktop.Sdk",
-  "sdk-extensions" : [ "org.freedesktop.Sdk.Extension.openjdk" ],
+  "sdk-extensions" : [ "org.freedesktop.Sdk.Extension.openjdk17" ],
+  "finish-args" : [
+    "--env=PATH=/app/jre/bin:/usr/bin:/app/bin",
+    "--socket=x11",
+    "--share=ipc",
+    "--device=dri",
+    "--socket=pulseaudio",
+    "--filesystem=home/.prefs:create",
+    "--filesystem=host:ro"
+  ],
+  "command" : "cru.sh",
   "modules" : [ {
     "name" : "openjdk",
     "buildsystem" : "simple",
-    "build-commands" : [ "/usr/lib/sdk/openjdk/install.sh" ]
+    "build-commands" : ["/usr/lib/sdk/openjdk17/install.sh"]
   }, {
     "name" : "ComicReaderUltimate",
     "buildsystem" : "simple",
@@ -37,17 +47,11 @@
         "type": "archive",
         "url": "https://github.com/electronstudio/ComicReaderUltimate/archive/refs/tags/v1.0.4.tar.gz",
         "sha512": "46848854d5f90c85a1b46f967a89598a3e5f57468e312276958fc00f57b22ce3a01ec697ea251b2b0822109c564cd0558ae62b2255f8d704e20d8206eabc8f4e"
+      },
+      {
+        "type": "patch",
+        "path": "fix-appdata.patch"
       }
     ]
-  } ],
-  "finish-args" : [
-    "--env=PATH=/app/jre/bin:/usr/bin:/app/bin",
-    "--socket=x11",
-    "--share=ipc",
-    "--device=dri",
-    "--socket=pulseaudio",
-    "--filesystem=home/.prefs:create",
-    "--filesystem=host:ro"
-  ],
-  "command" : "/app/bin/cru.sh"
+  } ]
 }
