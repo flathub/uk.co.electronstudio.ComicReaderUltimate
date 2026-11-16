@@ -1,0 +1,48 @@
+id: uk.co.electronstudio.ComicReaderUltimate
+runtime: org.freedesktop.Platform
+runtime-version: '26.08'
+sdk: org.freedesktop.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.openjdk17
+finish-args:
+  - --env=PATH=/app/jre/bin:/usr/bin:/app/bin
+  - --socket=x11
+  - --share=ipc
+  - --device=dri
+  - --socket=pulseaudio
+  - --filesystem=home/.prefs:create
+  - --filesystem=host:ro
+command: cru.sh
+rename-icon: icon128
+modules:
+  - name: openjdk
+    buildsystem: simple
+    build-commands:
+      - /usr/lib/sdk/openjdk17/install.sh
+
+  - name: ComicReaderUltimate
+    buildsystem: simple
+    build-commands:
+      - install -Dm755 cru.jar -t /app/bin/
+      - install -Dm755 cru.sh -t /app/bin/
+      - install -Dm644 icon128.png -t /app/share/icons/hicolor/128x128/apps/
+      - install -Dm644 ${FLATPAK_ID}.desktop -t /app/share/applications/
+      - install -Dm644 ${FLATPAK_ID}.appdata.xml -t /app/share/metainfo/
+    sources:
+      - type: file
+        dest-filename: cru.jar
+        url: https://github.com/electronstudio/ComicReaderUltimate/releases/download/v1.0.4/CRU-1.0.4.jar
+        sha256: 56f68c08454e098070a4aa726ad85f9bb1ca00b804ba25f3b08e285225b36e1b
+
+      - type: archive
+        url: https://github.com/electronstudio/ComicReaderUltimate/archive/refs/tags/v1.0.4.tar.gz
+        sha256: bacf78ada79cac1b20ae2e0d0b8431c920f022e2784166006ccf9319e3eb4867
+
+      - type: script
+        dest-filename: cru.sh
+        commands:
+          - java -Xms1G -Xmx4G -XX:+UseZGC -XX:MaxGCPauseMillis=10 -jar /app/bin/cru.jar
+            "$@"
+
+      - type: patch
+        path: fix-appdata.patch
