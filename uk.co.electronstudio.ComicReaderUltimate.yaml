@@ -10,8 +10,8 @@ finish-args:
   - --share=ipc
   - --device=dri
   - --socket=pulseaudio
-  - --filesystem=home/.prefs:create
-  - --filesystem=host:ro
+  - --persist=.prefs
+  - --filesystem=home:ro
 command: cru.sh
 rename-icon: icon128
 modules:
